@@ -1,0 +1,175 @@
+:root {
+  --bg: #03045E;
+  --bg: linear-gradient(90deg, rgba(3, 4, 94, 1) 0%, rgba(0, 119, 182, 1) 25%, rgba(0, 180, 216, 1) 50%, rgba(144, 224, 239, 1) 75%, rgba(202, 240, 248, 1) 100%);
+  --fg: #1a1a1a;
+  --muted: #666666;
+  --border: #dddddd;
+  --head-bg: #f4f4f5;
+  --row-alt: #fafafa;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #00A6FB;
+    --bg: linear-gradient(90deg, rgba(0, 166, 251, 1) 0%, rgba(5, 130, 202, 1) 25%, rgba(0, 100, 148, 1) 50%, rgba(0, 53, 84, 1) 75%, rgba(5, 25, 35, 1) 100%);
+    ;
+    --fg: #eeeeee;
+    --muted: #b6b6b6;
+    --border: #A2A2A2;
+    --head-bg: #1c1c1e;
+    --row-alt: #161616;
+  }
+}
+
+/* Cor de segurança: aparece só se o navegador "esticar" além da janela (overscroll no celular). */
+html {
+  background-color: #1776ce;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  color: var(--fg);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+/*
+  O gradiente fica numa camada fixa do tamanho da janela, atrás de todo o conteúdo.
+  Antes ele era pintado no <html>, que só tem a altura do conteúdo: o gradiente (600% dessa
+  altura) acabava no meio da tela e o navegador repetia o começo dele logo abaixo.
+*/
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(45deg, #1776ce, #8a17ce, #ba17ce);
+  background-size: 600% 600%;
+  animation: MovingGradient 8s ease infinite;
+}
+
+#status {
+  margin: 0 0 12px;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+#tabela {
+  overflow-x: auto;
+  /* rolagem horizontal no celular */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+th,
+td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  background: var(--head-bg);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--row-alt);
+}
+
+.bg-pan-left {
+  -webkit-animation: bg-pan-left 16s ease-in-out infinite both;
+  animation: bg-pan-left 16s ease-in-out infinite both;
+}
+
+@-webkit-keyframes MovingGradient {
+    0%{background-position:0% 18%}
+    50%{background-position:100% 83%}
+    100%{background-position:0% 18%}
+}
+@-moz-keyframes MovingGradient {
+    0%{background-position:0% 18%}
+    50%{background-position:100% 83%}
+    100%{background-position:0% 18%}
+}
+@keyframes MovingGradient {
+    0%{background-position:0% 18%}
+    50%{background-position:100% 83%}
+    100%{background-position:0% 18%}
+}
+
+div.bubble {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 0.01em 16px;
+  border-width: medium;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* largura do conteúdo (as colunas precisam de espaço), mas nunca maior que a tela */
+  width: max-content;
+  max-width: min(92vw, 1000px);
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Um PPP por coluna: no máximo 3 por linha (o JS escolhe c1, c2 ou c3) */
+div.coluna {
+  display: grid;
+  row-gap: 8px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+div.coluna.c1 {
+  grid-template-columns: 1fr;
+}
+
+div.coluna.c2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+div.coluna.c3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+div.coluna .ppp {
+  padding: 0 16px;
+}
+
+/* Divisória entre colunas (o JS põe a classe em todos menos no primeiro de cada linha) */
+div.coluna .ppp.divisoria {
+  border-left: 1px solid var(--border);
+}
+
+div.coluna .ppp p {
+  margin: 4px 0;
+}
+
+/* Celular: um PPP embaixo do outro */
+@media (max-width: 640px) {
+  div.coluna.c2,
+  div.coluna.c3 {
+    grid-template-columns: 1fr;
+  }
+
+  div.coluna .ppp.divisoria {
+    border-left: 0;
+  }
+
+  div.coluna .ppp + .ppp {
+    border-top: 1px solid var(--border);
+  }
+}

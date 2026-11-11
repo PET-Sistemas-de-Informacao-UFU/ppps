@@ -1,0 +1,24 @@
+name = "planilha-worker"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+
+# Arquivos estáticos
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+# Cache dos dados da planilha.
+# Crie com: npx wrangler kv namespace create CACHE
+# e cole o id que ele devolver aqui embaixo.
+[[kv_namespaces]]
+binding = "CACHE"
+id = ""
+
+[vars]
+SHEET_ID = "" # id da planilha no google sheets
+SHEET_RANGE = "2026/2"   # nome da página da planilha
+CACHE_TTL = "3600"        # segundos de cache. 3600 = 1h (mínimo 60)
+
+# Secrets (NÃO vão neste arquivo):
+#   npx wrangler secret put GOOGLE_API_KEY
+#   npx wrangler secret put REFRESH_TOKEN   (opcional, para a rota /api/refresh)
