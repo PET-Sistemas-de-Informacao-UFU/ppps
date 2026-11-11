@@ -20,6 +20,8 @@ public/index.html            cara do site
 ```bash
 npm install
 
+# 0. Renomeie o arquivo wrangler.toml.example para wrangler.toml
+
 # 1. KV para o cache (cole o id no wrangler.toml)
 npx wrangler kv namespace create CACHE
 
@@ -34,7 +36,7 @@ npm run dev
 npm run deploy
 ```
 
-Para `npm run dev`, crie um `.dev.vars`:
+Para `npm run dev`, crie um `.dev.vars` com:
 
 ```
 GOOGLE_API_KEY=sua_chave
@@ -43,7 +45,7 @@ REFRESH_TOKEN=um_token_qualquer
 
 ## Google Cloud
 
-1. Ative a **Google Sheets API** no projeto.
+1. Ative a [Google Sheets API](https://console.cloud.google.com/apis/dashboard) no projeto.
 2. Crie uma **API key** e restrinja-a à Sheets API.
 3. A planilha precisa estar com acesso "qualquer pessoa com o link pode ver".
 
