@@ -125,8 +125,9 @@ async function carregar() {
 
   } catch (err) {
     console.error(err);
+    document.getElementsByTagName("h1")[0].textContent = "Erro ao procurar";
     setStatus("Erro ao carregar os dados. Tente novamente em instantes.");
-    eid("btn").disabled = true;
+    eid("btn").hidden = true;
   }
 }
 
