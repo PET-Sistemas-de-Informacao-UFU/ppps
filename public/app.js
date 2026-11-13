@@ -119,9 +119,11 @@ async function carregar() {
     //então a data do primeiro item é a do próximo PPP e todos os PPPs desse dia entram.
     const pppAtual = pppsHoje.length > 0 ? pppsHoje.filter(item => item.data === pppsHoje[0].data) : [];
 
-    renderTabela(pppsHoje);
-    setStatus(`${pppsHoje.length} de ${items.length} PPPs disponíveis. | Atualizado em ${hoje.toLocaleString("pt-BR")}`);
+    
     renderProximoPPP(pppAtual);
+    setStatus(`${pppsHoje.length} de ${items.length} PPPs disponíveis. | Atualizado em ${hoje.toLocaleString("pt-BR")}`);
+    renderTabela(pppsHoje);
+    eid("btn").hidden = false;
 
   } catch (err) {
     console.error(err);
