@@ -266,6 +266,11 @@ button {
   transition-duration: 0.4s;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 button:hover {
   background-color: #0098ca;
 }

@@ -24,8 +24,10 @@ function setStatus(msg) {
 function renderTabela(items) {
   const table = document.createElement("table");
 
+  const colunas = COLUNAS.filter(([, campo]) => campo !== "obs");
+
   const headRow = table.createTHead().insertRow();
-  for (const [titulo] of COLUNAS) {
+  for (const [titulo] of colunas) {
     const th = document.createElement("th");
     th.textContent = titulo;
     headRow.appendChild(th);
@@ -34,7 +36,7 @@ function renderTabela(items) {
   const tbody = table.createTBody();
   for (const item of items) {
     const tr = tbody.insertRow();
-    for (const [, campo] of COLUNAS) {
+    for (const [, campo] of colunas) {
       tr.insertCell().textContent = item[campo] ?? ""; // textContent evita injeção de HTML
     }
   }
@@ -124,6 +126,7 @@ async function carregar() {
   } catch (err) {
     console.error(err);
     setStatus("Erro ao carregar os dados. Tente novamente em instantes.");
+    eid("btn").disabled = true;
   }
 }
 
