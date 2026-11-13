@@ -17,7 +17,7 @@
     --muted: #b6b6b6;
     --border: #A2A2A2;
     --head-bg: #1c1c1e;
-    --row-alt: #161616;
+    --row-alt: #a7a7a7;
   }
 }
 
@@ -55,55 +55,51 @@ body::before {
   color: var(--muted);
 }
 
-#tabela {
-  overflow-x: auto;
-  /* rolagem horizontal no celular */
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9375rem;
-}
-
-th,
-td {
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--border);
-  text-align: left;
-  white-space: nowrap;
-}
-
-th {
-  background: var(--head-bg);
-  font-weight: 600;
-  position: sticky;
-  top: 0;
-}
-
-tbody tr:nth-child(even) {
-  background: var(--row-alt);
-}
-
 .bg-pan-left {
   -webkit-animation: bg-pan-left 16s ease-in-out infinite both;
   animation: bg-pan-left 16s ease-in-out infinite both;
 }
 
 @-webkit-keyframes MovingGradient {
-    0%{background-position:0% 18%}
-    50%{background-position:100% 83%}
-    100%{background-position:0% 18%}
+  0% {
+    background-position: 0% 18%
+  }
+
+  50% {
+    background-position: 100% 83%
+  }
+
+  100% {
+    background-position: 0% 18%
+  }
 }
+
 @-moz-keyframes MovingGradient {
-    0%{background-position:0% 18%}
-    50%{background-position:100% 83%}
-    100%{background-position:0% 18%}
+  0% {
+    background-position: 0% 18%
+  }
+
+  50% {
+    background-position: 100% 83%
+  }
+
+  100% {
+    background-position: 0% 18%
+  }
 }
+
 @keyframes MovingGradient {
-    0%{background-position:0% 18%}
-    50%{background-position:100% 83%}
-    100%{background-position:0% 18%}
+  0% {
+    background-position: 0% 18%
+  }
+
+  50% {
+    background-position: 100% 83%
+  }
+
+  100% {
+    background-position: 0% 18%
+  }
 }
 
 div.bubble {
@@ -160,6 +156,7 @@ div.coluna .ppp p {
 
 /* Celular: um PPP embaixo do outro */
 @media (max-width: 640px) {
+
   div.coluna.c2,
   div.coluna.c3 {
     grid-template-columns: 1fr;
@@ -169,7 +166,113 @@ div.coluna .ppp p {
     border-left: 0;
   }
 
-  div.coluna .ppp + .ppp {
+  div.coluna .ppp+.ppp {
     border-top: 1px solid var(--border);
   }
 }
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog {
+  border: none;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 80vw;
+  max-height: 90vh;
+  animation: fadeOut 0.2s ease-out;
+  
+}
+
+dialog:open {
+  animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    
+  }
+  to {
+    opacity: 0;
+    
+  }
+}
+
+@keyframes backdrop-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.25;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+th,
+td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  background: var(--row-alt);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--row-alt);
+}
+
+#tabela {
+  overflow-x: auto; /* rolagem horizontal no celular */
+}
+
+button {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0.75em 1em;
+  border-radius: 4px;
+  transition-duration: 0.4s;
+}
+
+button:hover {
+  background-color: #0098ca;
+}
+
+.center {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+

@@ -19,8 +19,14 @@
     <div class="bubble">
         <h1>Próximo PPP</h1>
         <div class="coluna" id="render-ppp"></div>
+        <button command="show-modal" commandfor="msgbox" class="center">Ver PPPs futuros</button>
         <p id="status"></p>
     </div>
+
+    <dialog id="msgbox">
+        <div id="tabela"></div>
+        <button commandfor="msgbox" command="close">Fechar</button>
+    </dialog>
 
     <!--<div id="tabela" style="display: none;"></div>-->
     <script src="" async defer></script>
