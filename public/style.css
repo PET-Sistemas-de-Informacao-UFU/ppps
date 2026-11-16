@@ -6,6 +6,7 @@
   --border: #dddddd;
   --head-bg: #f4f4f5;
   --row-alt: #fafafa;
+  --link: #4854fd;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,6 +19,7 @@
     --border: #A2A2A2;
     --head-bg: #1c1c1e;
     --row-alt: #a7a7a7;
+    --link: #959cfa;
   }
 }
 
@@ -44,10 +46,27 @@ body::before {
   animation: MovingGradient 8s ease infinite;
 }
 
-#status {
+p {
   margin: 0 0 12px;
+}
+
+p#status {
   font-size: 0.875rem;
   color: var(--muted);
+}
+
+p>a,
+p.footer {
+  text-decoration: none;
+  text-transform: lowercase;
+  font-size: 0.775rem;
+  text-align: center;
+}
+
+p>a {
+  color: var(--link);
+  text-shadow: var(--muted);
+  text-decoration: dashed var(--link);
 }
 
 .bg-pan-left {
@@ -178,7 +197,7 @@ dialog {
   max-width: 80vw;
   max-height: 90vh;
   animation: fadeOut 0.2s ease-out;
-  
+
 }
 
 dialog:open {
@@ -190,6 +209,7 @@ dialog:open {
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -199,11 +219,12 @@ dialog:open {
 @keyframes fadeOut {
   from {
     opacity: 1;
-    
+
   }
+
   to {
     opacity: 0;
-    
+
   }
 }
 
@@ -243,7 +264,8 @@ tbody tr:nth-child(even) {
 }
 
 #tabela {
-  overflow-x: auto; /* rolagem horizontal no celular */
+  overflow-x: auto;
+  /* rolagem horizontal no celular */
 }
 
 button {
@@ -279,4 +301,3 @@ button[hidden] {
   left: 50%;
   transform: translateX(-50%);
 }
-
