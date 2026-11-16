@@ -1,8 +1,9 @@
-// /api/dados devolve um array de { materia, curso, petiano, data, horaSala, obs? }.
+function eid(elem) {
+  return document.getElementById(elem);
+}
 
-const tabelaEl = document.getElementById("tabela");
-const statusEl = document.getElementById("status");
-const exemploStruct = { materia: "", curso: "", petiano: "", data: new Date(), horaSala: "", obs: "" };
+const tabelaEl = eid("tabela");
+const statusEl = eid("status");
 
 const COLUNAS = [
   ["Matéria", "materia"],
@@ -12,10 +13,6 @@ const COLUNAS = [
   ["Hora/Sala", "horaSala"],
   ["Obs", "obs"],
 ];
-
-function eid(elem) {
-  return document.getElementById(elem);
-}
 
 function setStatus(msg) {
   if (statusEl) statusEl.textContent = msg;
@@ -90,8 +87,6 @@ async function carregar() {
     const res = await fetch("/api/dados");
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const items = await res.json();
-
-    //const parsed = JSON.parse(items);
 
     //ordena em ordem crescente
     items.sort((a, b) => {

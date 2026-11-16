@@ -34,11 +34,6 @@ body {
   line-height: 1.5;
 }
 
-/*
-  O gradiente fica numa camada fixa do tamanho da janela, atrás de todo o conteúdo.
-  Antes ele era pintado no <html>, que só tem a altura do conteúdo: o gradiente (600% dessa
-  altura) acabava no meio da tela e o navegador repetia o começo dele logo abaixo.
-*/
 body::before {
   content: "";
   position: fixed;
